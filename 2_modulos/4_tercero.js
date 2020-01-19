@@ -10,6 +10,8 @@
     a que este creado el archivo package-lock.json y la carpeta node_modules.
 
     Explicar para que sirve package-lock.json y la carpeta node_modules. plantear problema de node_modules.
+
+    URL de la Biblioteca: https://github.com/jonschlinkert/is-number
 */
 
 const isNumber = require('is-number');
