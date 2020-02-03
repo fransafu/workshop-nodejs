@@ -1,4 +1,4 @@
-const { userService } = require('../services');
+import { userService } from '../services'
 
 const list = async (req, res) => {
     const list = await userService.getList();
@@ -26,7 +26,7 @@ const create = (req, res) => {
 
 }
 
-module.exports = {
+export default {
     list,
     create,
 };

@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const User = require('./user');
+import mongoose from 'mongoose';
+import User from './user';
 
 mongoose.set('debug', true);
 
-module.exports = {
+export {
   User,
-}
+};

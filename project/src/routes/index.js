@@ -1,8 +1,8 @@
-const express = require('express');
-const users = require('./users');
+import express from 'express';
+import users from './users';
 
 const routes = express.Router();
 
 routes.use('/users', users);
 
-module.exports = routes;
+export default routes;

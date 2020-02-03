@@ -1,15 +1,12 @@
-const { User } = require('../models');
+import { User } from '../models';
 
 const getList = async () => {
-
     const users = await User.find({}).exec();
-
-    console.log(users);
     return users;
 }
 
 const createUser = (name) => {
-    const user = new User({name});
+    const user = new User({ name });
 
     return user.save()
         .then((data) => {
@@ -22,7 +19,7 @@ const createUser = (name) => {
         });
 }
 
-module.exports = {
+export {
     getList,
     createUser,
-};
+}

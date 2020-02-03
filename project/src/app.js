@@ -1,15 +1,16 @@
 // Load file .env with environment vars
-require('dotenv').config()
+import {} from 'dotenv/config'
 
 // Load dependencies
-const express = require('express');
-const bodyParser = require('body-parser');
-const helmet = require('helmet');
-const mongoose = require('mongoose');
+import express from 'express';
+import bodyParser from 'body-parser';
+import helmet from 'helmet';
+import mongoose from 'mongoose';
 
 // Instancia de express en la variable 'app'
+import routes from './routes';
+
 const app = express();
-const routes = require('./routes');
 
 // Parse request from client when use form or json
 app.use(bodyParser.json());

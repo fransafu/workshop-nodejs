@@ -1,5 +1,5 @@
-const userService = require('./userService');
+import userService from './userService'
 
-module.exports = {
+export {
     userService,
 };
