@@ -1,21 +1,28 @@
+const { User } = require('../models');
 
-const getList = () => {
-    return [
-        {
-            id: 1,
-            name: 'user 1'
-        },
-        {
-            id: 2,
-            name: 'user 2'
-        },
-        {
-            id: 3,
-            name: 'user 3'
-        }
-    ]
+const getList = async () => {
+
+    const users = await User.find({}).exec();
+
+    console.log(users);
+    return users;
+}
+
+const createUser = (name) => {
+    const user = new User({name});
+
+    return user.save()
+        .then((data) => {
+            console.log(data);
+            return true;
+        })
+        .catch((err) => {
+            console.log(err);
+            return false;
+        });
 }
 
 module.exports = {
     getList,
+    createUser,
 };
