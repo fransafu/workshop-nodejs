@@ -12,8 +12,8 @@ const app = express();
 const routes = require('./routes');
 
 // Parse request from client when use form or json
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Security
 app.use(helmet());
@@ -26,7 +26,10 @@ app.listen(process.env.PORT, (err) => {
     if (err) throw err;
 
     return mongoose
-        .connect(process.env.URL_MONGODB, { useUnifiedTopology: true, useNewUrlParser: true })
+        .connect(process.env.URL_MONGODB, {
+            useUnifiedTopology: true,
+            useNewUrlParser: true
+        })
         .then(() => {
             console.log('Server listening on port 8080');
         })
