@@ -29,6 +29,11 @@ app.get('/', (req, res) => {
 // Load routes
 app.use('/', routes);
 
+// Manage route not found (404)
+app.use((req, res, next) => {
+    return res.status(404).send({ message: `Route ${req.url} Not Found` });
+});
+
 // Lister server on PORT and connect database
 app.listen(process.env.PORT, (err) => {
     if (err) throw err;
