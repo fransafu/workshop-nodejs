@@ -1,17 +1,17 @@
 import { User } from '../models';
 
 const list = async () => {
-    const users = await User.find({}).exec();
+    const users = await User.find({}, { __v: 0 }).exec();
     return users;
 }
 
-const find = async (name) => {
-    const user = await User.findOne({ name }).exec();
+const find = async (id) => {
+    const user = await User.findOne({ _id: id }, { __v: 0 }).exec();
     return user
 }
 
-const create = (name) => {
-    const user = new User({ name });
+const create = (name, email) => {
+    const user = new User({ name, email });
 
     return user.save()
         .then((data) => {
@@ -24,33 +24,31 @@ const create = (name) => {
         });
 }
 
-const update = async (name, newName) => {
-    const user = await User.findOne({ name }, { _id: 0, __v: 0 });
+const update = async (id, name, email) => {
+    try {
+        const user = await User.findOne({ _id: id }, { _id: 0, __v: 0 });
 
-    if (!user) {
-        return Promise.reject(false)
+        if (!user) {
+            return Promise.reject(false)
+        }
+    
+        const oldUser = user.toJSON();
+        const result = await User.updateOne({
+            _id: id
+        }, {
+            ...oldUser,
+            ...{ name, email }
+        });
+
+        return result;
+    } catch (err) {
+        return err;
     }
-    console.log();
-    const datauser = user.toJSON();
-    return User.updateOne({
-        name
-    }, {
-        ...datauser,
-        ...{ name: newName }
-    })
-    .then(result => {
-        console.log(result);
-        return true
-    })
-    .catch(err => {
-        console.error(err);
-        return false
-    })
 }
 
 // delete is a keyword, use 'del'
-const del = (name) => {
-    return User.findOneAndRemove({ name })
+const del = (id) => {
+    return User.findOneAndRemove({ _id: id })
         .then(result => {
             console.log(result);
             return true;
