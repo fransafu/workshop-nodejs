@@ -21,7 +21,7 @@ const create = (req, res) => {
   return userService.create(name)
     .then((result) => {
       console.log(result);
-      return res.status(200).send({ message: 'Usuario creado exitosamente' });
+      return res.status(201).send({ message: 'Usuario creado exitosamente' });
     })
     .catch((err) => {
       console.error(err);
