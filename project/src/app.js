@@ -1,5 +1,5 @@
 // Load file .env with environment vars
-import {} from 'dotenv/config'
+import {} from 'dotenv/config';
 
 // Load dependencies
 import express from 'express';
@@ -30,23 +30,21 @@ app.set('view engine', 'ejs');
 app.use('/', routes);
 
 // Manage route not found (404)
-app.use((req, res, next) => {
-    return res.status(404).send({ message: `Route ${req.url} Not Found` });
-});
+app.use((req, res) => res.status(404).send({ message: `Route ${req.url} Not Found` }));
 
 // Lister server on PORT and connect database
 app.listen(process.env.PORT, (err) => {
-    if (err) throw err;
+  if (err) throw err;
 
-    return mongoose
-        .connect(process.env.URL_MONGODB, {
-            useUnifiedTopology: true,
-            useNewUrlParser: true
-        })
-        .then(() => {
-            console.log('Server listening on port 8080');
-        })
-        .catch((err) => {
-            throw err;
-        });
+  return mongoose
+    .connect(process.env.URL_MONGODB, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    })
+    .then(() => {
+      console.log('Server listening on port 8080');
+    })
+    .catch((errDB) => {
+      throw errDB;
+    });
 });
