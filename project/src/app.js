@@ -20,11 +20,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Security
 app.use(helmet());
 
-// public index.html
-app.use(express.static(path.join(__dirname, '/public/')));
-app.get('/', (req, res) => {
-  res.sendFile(path.join(path.join(__dirname, '/public/index.html')));
-});
+// SPA or website
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 // Load routes
 app.use('/', routes);
