@@ -16,14 +16,19 @@
     "@babel/core": "^7.8.4",
     "@babel/node": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^25.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
-    "nodemon": "^2.0.2"
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
+    "regenerator-runtime": "^0.13.3",
+    "supertest": "^4.0.2"
   },
   "scripts": {
     "start": "node src/app.js",
-    "test": "babel-node ./src/app.js",
+    "test": "jest --testTimeout=15000",
     "dev": "nodemon --exec babel-node ./src/app.js",
     "lint": "npx eslint ./src"
   },
