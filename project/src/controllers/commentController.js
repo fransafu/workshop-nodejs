@@ -1,8 +1,8 @@
 import { commentService } from '../services';
 
 const list = async (req, res) => {
-  const list = await commentService.list();
-  return res.json(list);
+  const comments = await commentService.list();
+  return res.json(comments);
 };
 
 const find = async (req, res) => {
