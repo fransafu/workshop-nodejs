@@ -1,0 +1,158 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Workshop RESTful API Node.js",
+      "description": "Aplicar swagger para RESTful API con Node.js",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Users",
+        "description": "API for users in the system"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/users": {
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "description": "Crear un usuario nuevo",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "Crear un nuevo usuario",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Usuario creado exitosamente",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "Obtener todos los usuario",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Users"
+              }
+            }
+          }
+        }
+      },
+      "/users/{userId}": {
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Obtener un usuario especifico por ID",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "Obtener un usuario por el ID",
+          "responses": {
+            "200": {
+              "description": "Usuario encontrado",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Eliminar un usuario por ID",
+          "tags": [
+            "Users"
+          ],
+          "responses": {
+            "200": {
+              "description": "El usuario fue eliminado",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Actualizar un usuario por ID",
+          "tags": [
+            "Users"
+          ],
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "Usuario con las propiedades a actualizar",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Usuario actualizado",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "User": {
+        "required": [
+          "name",
+          "email"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "uniqueItems": true
+          }
+        }
+      },
+      "Users": {
+        "type": "array",
+        "$ref": "#/definitions/User"
+      }
+    }
+  }
