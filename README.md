@@ -1,9 +1,9 @@
 # workshop-nodejs
 
 **Verificar antes de iniciar**
-1.- Todos tienen instalado Node.js?
-2.- Version de Node.js (node --version)
-3.- Version de npm (npm --version)
+1. Todos tienen instalado Node.js?
+2. Version de Node.js (node --version)
+3. Version de npm (npm --version)
 
 # 1) Hello World
 
